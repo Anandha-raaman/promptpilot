@@ -1,0 +1,148 @@
+[
+  {
+    "id": "sum-001",
+    "dataset_id": "default-benchmark",
+    "task_type": "Summarization",
+    "name": "Cloud Architecture Migration Post-Mortem",
+    "description": "Enterprise cloud engineering review with financial and technical trade-offs.",
+    "prompt": "Summarize the technical outcomes, cost impacts, and latency metrics from the cloud migration report.",
+    "input_text": "TechVanguard completed its migration to serverless compute across European regions during Q2. While operational compute expenses dropped by 28%, initial transition costs overshot the $1.5M budget by $340,000 due to data ingress bandwidth miscalculations. Furthermore, cold start latency on infrequently invoked microservices increased p99 response times from 120ms to 480ms during non-peak hours. The infrastructure team has mandated provisioned concurrency for customer-facing authentication endpoints starting next sprint.",
+    "criteria": "Must accurately cover the 28% compute cost drop, $340,000 budget overrun, p99 latency increase to 480ms, and provisioned concurrency mandate.",
+    "expected_output": "TechVanguard completed its European serverless transition in Q2, reducing operational compute expenses by 28%. However, ingress bandwidth miscalculations caused a $340,000 budget overrun on the $1.5M project. Off-peak p99 cold start latency increased to 480ms, prompting mandated provisioned concurrency for customer auth endpoints next sprint.",
+    "tags": ["cloud", "infrastructure", "post-mortem", "serverless"],
+    "ground_truth_key_points": [
+      "28% drop in operational compute costs",
+      "$340,000 budget overrun due to ingress bandwidth",
+      "p99 latency increased to 480ms from cold starts",
+      "Provisioned concurrency mandated for auth endpoints"
+    ]
+  },
+  {
+    "id": "sum-002",
+    "dataset_id": "default-benchmark",
+    "task_type": "Summarization",
+    "name": "Clinical AI Regulatory Guideline Summary",
+    "description": "Healthcare regulatory agency notice concerning software as a medical device.",
+    "prompt": "Summarize the regulatory timeline, audit requirements, and risk classifications for clinical AI software.",
+    "input_text": "The Federal Health Authority released its final oversight framework for clinical machine learning algorithms. Effective January 2027, all Class II diagnostic aids must provide verifiable audit logs of training data distributions and demonstrate parity across diverse patient demographics. Developers must submit post-market surveillance reports annually. Algorithms deployed in emergency triage settings are categorized under high-risk Class III and require randomized prospective clinical validation prior to general availability.",
+    "criteria": "Must include January 2027 effective date, Class II audit logs and demographic parity, annual surveillance reports, and Class III emergency triage prospective validation.",
+    "expected_output": "The Federal Health Authority oversight framework mandates that beginning January 2027, Class II diagnostic AI aids must maintain training data audit logs and demographic parity, with annual post-market surveillance reports. High-risk Class III algorithms in emergency triage require prospective clinical trials before general availability.",
+    "tags": ["healthcare", "regulatory", "compliance", "medical-ai"],
+    "ground_truth_key_points": [
+      "Final oversight framework takes effect January 2027",
+      "Class II aids require training distribution audit logs and demographic parity",
+      "Annual post-market surveillance reports required",
+      "Emergency triage algorithms classified as high-risk Class III requiring prospective trials"
+    ]
+  },
+  {
+    "id": "extract-001",
+    "dataset_id": "default-benchmark",
+    "task_type": "Information Extraction",
+    "name": "Quarterly Financial Disclosure",
+    "description": "Financial press release with company names, figures, and target quarters.",
+    "prompt": "Extract the reported quarterly financial metrics, executive names, and forward-looking guidance from the press release.",
+    "input_text": "Apex Quantum Semiconductor (NASDAQ: APXQ) reported Q1 2026 fiscal revenues of $842 million, representing an 18% increase year-over-year. Net income expanded to $112 million, compared to $85 million in Q1 2025. Chief Executive Officer David Sterling cited heightened demand for cryogenic quantum control chips. For Q2 2026, CFO Maria Santos projected revenues between $890M and $915M, backed by a commercial delivery contract with HyperScale Compute Labs signed on March 15.",
+    "criteria": "Must extract: Apex Quantum Semiconductor, David Sterling, Maria Santos, Q1 2026 revenue of $842 million (+18% YoY), net income of $112 million, Q2 guidance of $890M-$915M.",
+    "expected_output": "Company: Apex Quantum Semiconductor (APXQ)\nExecutives: David Sterling (CEO), Maria Santos (CFO)\nQ1 2026 Revenue: $842 million (+18% YoY)\nQ1 2026 Net Income: $112 million\nQ2 2026 Guidance: $890M - $915M",
+    "tags": ["finance", "earnings", "extraction", "semiconductor"],
+    "ground_truth_entities": {
+      "companies": ["Apex Quantum Semiconductor", "HyperScale Compute Labs"],
+      "executives": ["David Sterling", "Maria Santos"],
+      "financials": {
+        "Q1_2026_revenue": "$842 million",
+        "Q1_2026_net_income": "$112 million",
+        "Q2_2026_guidance": "$890M - $915M"
+      }
+    }
+  },
+  {
+    "id": "extract-002",
+    "dataset_id": "default-benchmark",
+    "task_type": "Information Extraction",
+    "name": "Software Security Vulnerability Advisory",
+    "description": "Cybersecurity advisory containing CVE identifiers, CVSS score, and affected packages.",
+    "prompt": "Extract the vulnerability CVE identifier, CVSS severity score, affected software versions, and mitigation recommendations.",
+    "input_text": "Security Alert SEC-2026-041: A critical remote code execution vulnerability (CVE-2026-19342, CVSS v3.1 score 9.6) was discovered in the OpenGateway proxy library affecting versions 3.2.0 through 3.4.1. The flaw allows unauthenticated remote attackers to inject arbitrary headers into internal RPC dispatchers. Security team recommends immediate patching to version 3.4.2 or disabling the experimental WebSocket multiplexing flag in gateway.conf as a temporary mitigation.",
+    "criteria": "Must extract: CVE-2026-19342, CVSS score 9.6, affected versions 3.2.0 through 3.4.1, fixed version 3.4.2 or disable WebSocket multiplexing.",
+    "expected_output": "Vulnerability: CVE-2026-19342\nCVSS Score: 9.6 (Critical)\nAffected Library: OpenGateway proxy library v3.2.0 - v3.4.1\nMitigation: Upgrade to 3.4.2 or disable WebSocket multiplexing in gateway.conf",
+    "tags": ["security", "cve", "vulnerability", "infosec"],
+    "ground_truth_entities": {
+      "cve": "CVE-2026-19342",
+      "cvss_score": "9.6",
+      "affected_versions": "3.2.0 through 3.4.1",
+      "fixed_version": "3.4.2"
+    }
+  },
+  {
+    "id": "gen-001",
+    "dataset_id": "default-benchmark",
+    "task_type": "Text Generation",
+    "name": "API Deprecation Communication Email",
+    "description": "Customer developer communication regarding sunsetting a legacy REST endpoint.",
+    "prompt": "Draft a developer communication email detailing the API deprecation date, replacement protocol, and migration documentation link.",
+    "input_text": "Our engineering platform is deprecating REST v1 endpoints for the Billing API on November 30, 2026. Developers must transition to GraphQL v2 API which supports webhook streaming and granular token scopes. A sunset migration guide and SDK wrappers are available at docs.cloudbilling.io/v2-migration.",
+    "criteria": "Must convey: November 30, 2026 sunset date, GraphQL v2 migration, webhook streaming, docs.cloudbilling.io/v2-migration.",
+    "expected_output": "Subject: Action Required: Billing API REST v1 Deprecation on Nov 30, 2026\n\nDear Developer,\n\nWe are sunsetting REST v1 for our Billing API on November 30, 2026. Please migrate to our GraphQL v2 API to take advantage of webhook streaming and granular token scopes. Full documentation and SDKs are available at docs.cloudbilling.io/v2-migration.",
+    "tags": ["developer-relations", "email", "api", "deprecation"],
+    "ground_truth_key_points": [
+      "Deprecation date: November 30, 2026",
+      "Replacement: GraphQL v2 API",
+      "Key benefits: webhook streaming and granular token scopes",
+      "Documentation link: docs.cloudbilling.io/v2-migration"
+    ]
+  },
+  {
+    "id": "gen-002",
+    "dataset_id": "default-benchmark",
+    "task_type": "Text Generation",
+    "name": "Product Feature Acceptance Criteria",
+    "description": "User story specification for real-time prompt latency alerting.",
+    "prompt": "Write formal product acceptance criteria for the latency alerting threshold in PromptPilot.",
+    "input_text": "Product Requirement: We need an alerting feature in PromptPilot that notifies users when a model execution takes longer than 3.0 seconds, allowing developers to detect slow models or unoptimized token lengths during batch runs.",
+    "criteria": "Must specify: 3.0 second latency threshold, alerting notification trigger, batch run scope.",
+    "expected_output": "Feature Acceptance Criteria: Prompt Execution Latency Alerting\n1. Scenario: Latency exceeds threshold\n   - Given a batch test execution in PromptPilot\n   - When model response latency exceeds 3.0 seconds\n   - Then the system triggers a warning notification indicating excessive duration.",
+    "tags": ["product", "agile", "acceptance-criteria", "promptpilot"],
+    "ground_truth_key_points": [
+      "Threshold: 3.0 seconds",
+      "Purpose: Detect slow models or excessive token lengths",
+      "Context: Batch runs in PromptPilot"
+    ]
+  },
+  {
+    "id": "tc-4f923b",
+    "dataset_id": "default-benchmark",
+    "task_type": "Summarization",
+    "name": "Financial Metrics Summary",
+    "description": "Summary of quarterly financial metrics and revenue growth.",
+    "prompt": "Summarize the key financial metrics.",
+    "input_text": "Revenue grew 25% to $500M in Q3 2026.",
+    "criteria": "Must mention 25% growth and $500M revenue.",
+    "expected_output": "In Q3 2026, revenue increased by 25% to reach $500M.",
+    "tags": ["finance", "summarization", "growth"]
+  },
+  {
+    "id": "tc-20a2f2",
+    "dataset_id": "default-benchmark",
+    "task_type": "Information Extraction",
+    "name": "Financial Figures Extraction",
+    "description": "Extraction of operating expenses and revenue figures.",
+    "prompt": "Extract the financial figures from the report.",
+    "input_text": "Operating expenses decreased from $210M to $180M while revenue increased to $500M in Q3 2026.",
+    "criteria": "Must mention $180M operating expenses and $500M revenue.",
+    "expected_output": "Operating Expenses: $180M (down from $210M)\nRevenue: $500M\nPeriod: Q3 2026",
+    "tags": ["finance", "extraction", "expenses"]
+  },
+  {
+    "id": "tc-2a8fc4",
+    "dataset_id": "default-benchmark",
+    "task_type": "Summarization",
+    "name": "Customer Growth Summary",
+    "description": "Summary of quarterly customer acquisition and total base.",
+    "prompt": "Summarize the company's customer growth.",
+    "input_text": "The company added 18,500 customers during Q3 2026, increasing its total customer base to 142,000.",
+    "criteria": "Must mention 18,500 new customers and the total customer base of 142,000.",
+    "expected_output": "The company added 18,500 new customers in Q3 2026, expanding its total customer base to 142,000.",
+    "tags": ["customers", "summarization", "growth"]
+  }
+]
